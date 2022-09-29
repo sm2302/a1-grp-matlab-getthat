@@ -1,1 +1,5 @@
 % ASSIGNMENT 1 MATLAB
+% CONWAY'S GAME OF LIFE
+
+% Initialisation
+
