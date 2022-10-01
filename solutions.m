@@ -15,11 +15,11 @@ close;
 
 % Initialisation: generate random matrix of size N
 N = 100;
-p = 0.5;
+p = 0.5; % probability of alive cells 
 
 current_gen = zeros(N+2, N+2);  % give current_gen borders of zeros
 current_gen(2:N+1, 2:N+1) = sprand(N, N, 0.5);
-new_gen = (current_gen < p);
+new_gen = (current_gen > p);
 
 % Counting live neighbours
 for i = 1:N
@@ -45,7 +45,7 @@ for i = 1:N
     end
     new_gen = current_gen;
     pcolor(new_gen)
-    colormap(summer)
+    colormap(autumn)
     title ('Game of Life','FontSize',14)
     pause(0.01)
 end
