@@ -16,7 +16,7 @@ new_gen = (current_gen < p);
 
 % Counting live neighbours
 for i = 1:N
-  current_gen = zeros(N+2, N+2);
+    current_gen = zeros(N+2, N+2);
     for r = 2:N+1; % rows of the current_gen matrix
         for c = 2:N+1; % columns of the current_gen matrix
             % count diagonal living neighbours
@@ -27,19 +27,18 @@ for i = 1:N
             num_alive = diag + nesw;
 
             % Update cells according to the rules
-            if (new_gen(r,c) == 1) && ((num_alive == 2) || (num_alive == 3))
-              current_gen(r,c) == 1;
-            elseif (new_gen(r,c) == 1) && ((num_alive < 2) || (num_alive > 3))
-              current_gen(r,c) == 0;
-            elseif (new_gen(r,c) == 0) && (num_alive == 3)
-              current_gen(r,c) == 1;
-            endif
+            if (new_gen(r, c)== 1) && ((num_alive < 2) || (num_alive > 3))
+                current_gen(r, c) = 0;
+            elseif (new_gen(r, c)== 1) && ((num_alive == 2) || (num_alive == 3))
+                    current_gen(r, c) = 1;
+            elseif (new_gen(r, c)== 0) && (num_alive == 3)
+                    current_gen(r, c) = 1;
+            end
         end
     end
-
     new_gen = current_gen;
-    pcolor(new_gen)
     pause(0.01);
+    pcolor(new_gen)
 end
 
 
