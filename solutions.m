@@ -55,4 +55,42 @@ end
 % Shiri, D. (2020, May 29). Game-of-life/lifegame.m at master · D-Shiri/game-of-life.GitHub.\
 %   Retrieved from https://github.com/d-shiri/game-of-life/blob/master/lifeGame.m
 
+_________________________________________________
+%% PEER REVIEW
 
+% Code solution: output = 10/10
+
+% All codes run smoothly, and every line contributes to the output of the game.
+
+% Code solution: context = 9/10
+
+% Very informative comments but are not consistently labelled throughout the codes.
+% e.g. : 
+% Initialisation: generate random matrix of size N
+% N = 100;
+% p = 0.5; % probability of alive cells 
+
+% Perhaps if the description of N is labelled next to it such as how you've done to p, it is more cohesive and consistent.
+
+% Code solution: figures = 10/10
+
+% All codes are formed neatly and cohesively. The placements throughout the codes are also good.
+
+% Creativity = 3/5
+
+% Very similar to the ones on the references.
+
+% Code styling = 4/5
+
+% Mostly it is understandable and gives ease to understanding the codes.
+
+% Ability to follow instructions = 3/5
+
+% The instruction requests for codes that does not include too much 'for' loops however this one is using 'for' loops in two sections of the codes.
+% However, good use in sprand()
+
+% Use of GitHub = 2/5
+
+% Only uses upload feature and edited once.
+
+% TOTAL MARKS: 41/50
