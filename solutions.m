@@ -7,36 +7,39 @@ close;
 % CONWAY'S GAME OF LIFE
 
 % Initialisation: generate random matrix of size N
-N = 10;
+N = 100;
+p = 0.5;
+
 current_gen = zeros(N+2, N+2);
 current_gen(2:N+1, 2:N+1) = sprand(N, N, 0.5);
+new_gen = (current_gen < p);
 
 % Counting live neighbours
-for i = 1:N;
+for i = 1:N
+  current_gen = zeros(N+2, N+2);
     for r = 2:N+1; % rows of the current_gen matrix
         for c = 2:N+1; % columns of the current_gen matrix
-            % counting diagonal living neighbours
-            diag = current_gen(r-1, c-1) + current_gen(r-1, c+1) + current_gen(r+1, c-1) + current_gen(r+1, c+1);
-            % counting horizontal & vertical living neighbours
-            horver = current_gen(r-1, c) + current_gen(r+1, c) + current_gen(r, c-1) + current_gen(r, c+1);
-            % no.of living neighbours
-            num_alive = diag + horver;
-        endfor
-    endfor
-endfor
+            % count diagonal living neighbours
+            diag = new_gen(r-1, c-1) + new_gen(r-1, c+1) + new_gen(r+1, c-1) + new_gen(r+1, c+1);
+            % count the neighbours in the North, East, South and West directions
+            nesw = new_gen(r-1, c) + new_gen(r+1, c) + new_gen(r, c-1) + new_gen(r, c+1);
+            % total no.of live neighbours
+            num_alive = diag + nesw;
 
-% Updating the new cells according to the rules
-for k = 1:5;
+            % Update cells according to the rules
+            if (new_gen(r,c) == 1) && ((num_alive == 2) || (num_alive == 3))
+              current_gen(r,c) == 1;
+            elseif (new_gen(r,c) == 1) && ((num_alive < 2) || (num_alive > 3))
+              current_gen(r,c) == 0;
+            elseif (new_gen(r,c) == 0) && (num_alive == 3)
+              current_gen(r,c) == 1;
+            endif
+        end
+    end
+
     new_gen = current_gen;
-    for r = 2:N+1;
-      for c = 2:N+1;
-    if (current_gen(r,c) == 1) && ((num_alive == 2) || (num_alive == 3))
-       (new_gen(r,c) == 1);
-    elseif (current_gen(r,c) == 1) && ((num_alive < 2) || (num_alive > 3))
-           (new_gen(r,c) == 0);
-    elseif (current_gen(r,c) == 0) && (num_alive == 3)
-           (new_gen(r,c) == 1);
-    endif
-      end
-   end
+    pcolor(new_gen)
+    pause(0.01);
 end
+
+
